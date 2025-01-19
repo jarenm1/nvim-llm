@@ -1,6 +1,6 @@
 local M = {}
 
-M.core = require('llm_prompt.core')
+M.core = require('llm-prompt.core')
 
 function M.setup(opts)
   M.core.setup(opts)
