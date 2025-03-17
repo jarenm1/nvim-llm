@@ -15,6 +15,8 @@ function M.toggle_chat()
   -- Create a buffer for the chat
   chat_buf = vim.api.nvim_create_buf(false, true) -- Not persistent, scratch buffer
   vim.api.nvim_buf_set_option(chat_buf, "buftype", "nofile")
+  vim.api.nvim_buf_set_option(chat_buf, "bufhidden", "wipe")
+  vim.api.nvim_buf_set_option(chat_buf, "swapfile", false)
   vim.api.nvim_buf_set_option(chat_buf, "filetype", "nvim-llm-chat")
 
   -- Open a right-side vertical split

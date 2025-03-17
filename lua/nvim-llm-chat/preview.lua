@@ -18,11 +18,14 @@ function M.show_preview()
 
   -- Create a floating preview window
   local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_option(buf, "buftype", "nofile")
+  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+  vim.api.nvim_buf_set_option(buf, "filetype", "lua") -- Enable syntax highlighting
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, suggested_code)
 
   local width = 50
   local height = #suggested_code + 2
-  preview_win = vim.api.nvim_open_win(buf, true, {
+  preview_win = vim.api.nvim_open_win(buf, false, { -- Set to false for non-focusable
     relative = "editor",
     width = width,
     height = height,
@@ -30,6 +33,7 @@ function M.show_preview()
     row = math.floor((vim.o.lines - height) / 2),
     style = "minimal",
     border = "single",
+    focusable = false, -- Make window non-focusable
   })
 
   -- Keymap to apply changes (mock for now)
